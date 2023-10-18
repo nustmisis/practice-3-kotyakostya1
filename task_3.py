@@ -31,7 +31,17 @@ format_phone_number!
 import re
 
 
+# def format_phone_number(text):
+#     # ваше решение:
+
+#     return "Fail!"
+
 def format_phone_number(text):
     # ваше решение:
+    text = text.replace(r"[a-z]+","").replace(r"[A-Z]+","").replace("+","").replace(" ","").replace("-","").replace("(","").replace(")","")
 
-    return "Fail!"
+    if len(text) == 10:
+        return f"+7 {text[:3]} {text[3:6]}-{text[6:8]}-{text[8:]}"
+    elif len(text) == 11 and re.fullmatch("[78]",text[0]):
+        return f"+7 {text[1:4]} {text[4:7]}-{text[7:9]}-{text[9:]}"
+    else: return "Fail!"
